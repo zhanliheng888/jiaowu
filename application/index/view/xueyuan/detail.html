@@ -1,0 +1,36 @@
+{extend name="public/base"}
+{block name="main"}
+<div id="page-wrapper" >
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">
+                    学院管理信息详情页面<small>学院详细信息页面</small>
+                </h1>
+            </div>
+        </div>
+        <!-- /. ROW  -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-12 col-sm-12">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            ID:{$arr.id}
+                        </div>
+                        <div class="panel-body">
+                            <p>院系名称：{$arr.xiname}</p>
+                            <p>院长或主任：{$arr.xiroot}</p>
+                            <p>说明：{$arr.xishuoming}</p>
+                            <div class="panel-footer">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- /. ROW  -->
+        </div>
+        <!-- /. PAGE INNER  -->
+
+    </div>
+{/block}

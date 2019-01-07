@@ -1,0 +1,79 @@
+{extend name="public/base"}
+{block name="main"}
+<div id="page-wrapper" >
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">
+                    课程管理
+                </h1>
+            </div>
+        </div>
+        <!-- /. ROW  -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Advanced Tables -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        课程名称
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <a href="{:url('index/kecheng/add')}" class="btn btn-success col-md-1"
+                               {if condition="session('admin.type')==2"}
+                               style="display: none"
+                               {/if}
+                            >新增课程</a>
+                            <div class="col-md-7"></div>
+
+                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>课程名称</th>
+                                    <th>所属专业</th>
+                                    <th>是否必修课</th>
+                                    <th>是否公共课</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {volist name="arr" id="vo"}
+                                <tr class="odd gradeX">
+                                    <td>{$vo.id}</td>
+                                    <td>{$vo.kname}</td>
+                                    <td>{$vo.yename}</td>
+                                    <td>
+                                        {if condition="$vo.kmust==0"}
+                                        必修
+                                        {elseif condition="$vo.kmust==1"}
+                                        不必修
+                                        {/if}
+                                    </td>
+                                    <td>
+                                        {if condition="$vo.kcom==0"}
+                                        公共课
+                                        {elseif condition="$vo.kcom==1"}
+                                        非公共课
+                                        {/if}
+                                    </td>
+                                    <td>
+                                        <a href="{:url('index/kecheng/detail',['id'=>$vo.id])}" class="btn btn-success btn-sm">查看</a>
+                                    </td>
+                                </tr>
+                                {/volist}
+                                </tbody>
+                            </table>
+                        </div>
+                        <center>{$arr->render()}</center>
+                    </div>
+                </div>
+
+                <!--End Advanced Tables -->
+            </div>
+        </div>
+
+    </div>
+</div>
+{/block}

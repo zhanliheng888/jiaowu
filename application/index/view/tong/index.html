@@ -1,0 +1,119 @@
+{extend name="public/base"}
+{block name="sc"}
+<link rel="stylesheet" href="__STATIC__/samples/style.css" type="text/css">
+
+<script src="__STATIC__/amcharts/amcharts.js" type="text/javascript"></script>
+<script src="__STATIC__/amcharts/serial.js" type="text/javascript"></script>
+<script src="__STATIC__/amcharts/exporting/amexport.js" type="text/javascript"></script>
+
+
+<script src="__STATIC__/amcharts/exporting/rgbcolor.js" type="text/javascript"></script>
+<script src="__STATIC__/amcharts/exporting/canvg.js" type="text/javascript"></script>
+<script src="__STATIC__/amcharts/exporting/jspdf.js" type="text/javascript"></script>
+<script src="__STATIC__/amcharts/exporting/filesaver.js" type="text/javascript"></script>
+<script src="__STATIC__/amcharts/exporting/jspdf.plugin.addimage.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    var chart;
+    var arr = {$cc};
+    console.log(arr);
+    var chartData = arr;
+
+
+    var chart = AmCharts.makeChart("chartdiv", {
+        type: "serial",
+        dataProvider: chartData,
+        categoryField: "country",
+        depth3D: 20,
+        angle: 30,
+
+        categoryAxis: {
+            labelRotation: 90,
+            gridPosition: "start"
+        },
+
+        valueAxes: [{
+            title: "Visitors"
+        }],
+
+        graphs: [{
+
+            valueField: "visits",
+            colorField: "color",
+            type: "column",
+            lineAlpha: 0,
+            fillAlphas: 1
+        }],
+
+        chartCursor: {
+            cursorAlpha: 0,
+            zoomable: false,
+            categoryBalloonEnabled: false
+        },
+
+        exportConfig: {
+            menuTop: "21px",
+            menuBottom: "auto",
+            menuRight: "21px",
+            backgroundColor: "#efefef",
+
+            menuItemStyle	: {
+                backgroundColor			: '#EFEFEF',
+                rollOverBackgroundColor	: '#DDDDDD'},
+
+            menuItems: [{
+                textAlign: 'center',
+                icon: '__STATIC__/amcharts/images/export.png',
+                onclick:function(){},
+                items: [{
+                    title: 'JPG',
+                    format: 'jpg'
+                }, {
+                    title: 'PNG',
+                    format: 'png'
+                }, {
+                    title: 'SVG',
+                    format: 'svg'
+                }, {
+                    title: 'PDF',
+                    format: 'pdf'
+                }]
+            }]
+        }
+    });
+</script>
+{/block}
+{block name="main"}
+<div id="page-wrapper" >
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">
+                    图形成绩统计
+                </h1>
+            </div>
+        </div>
+        <select id="status">
+            {volist name="ke" id="vo"}
+            <option {if condition="$li==$vo.kname"}selected="selected"{/if}>{$vo.kname}</option>
+            {/volist}
+        </select>
+        <!-- /. ROW  -->
+        <h3>课程/班级平均分、最高分统计表</h3>
+
+        <div id="chartdiv" style="width: 100%; height: 400px;"></div>
+
+
+    </div>
+
+
+</div>
+
+<script src="__STATIC__/assets/js/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+    $("#status").change(function(){
+        var query = $(this).val();
+        location.href = location.pathname+"?kname="+query
+    });
+</script>
+{/block}

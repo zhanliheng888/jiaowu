@@ -1,0 +1,42 @@
+{extend name="public/base"}
+{block name="main"}
+<div id="page-wrapper" >
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">
+                    教师管理信息详情页面<small>教师详细信息页面</small>
+                </h1>
+            </div>
+        </div>
+        <!-- /. ROW  -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-12 col-sm-12">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            ID:{$arr.0.id}
+                        </div>
+                        <div class="panel-body">
+                            <p>教师姓名：{$arr.0.jname}</p>
+                            <p>职称：{$arr.0.job}</p>
+                            <p>所属学院：{$arr.0.xiname}</p>
+                            <p>教授课程：{$arr.0.kname}
+                            </p>
+                            <p>简介：{$arr.0.jian}
+                            </p>
+                            <p>个人照片：</p>
+                            <img src="__STATIC__/img/{$arr.0.jpg}" alt="教材封面" width="300px" height="200px">
+                            <div class="panel-footer">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- /. ROW  -->
+        </div>
+        <!-- /. PAGE INNER  -->
+    </div>
+</div>
+{/block}

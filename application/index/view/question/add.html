@@ -1,0 +1,89 @@
+{extend name="public/base"}
+{block name="main"}
+<div id="page-wrapper" >
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">
+                    题库管理<small>题库页面</small>
+                </h1>
+            </div>
+        </div>
+        <!-- /. ROW  -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="text-align: center;">
+                        新增题目
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-3"></div>
+                            <div class="col-lg-6">
+                                <form role="form" action="add" method="post" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <label>题目</label>
+                                        <input class="form-control" value="" name="question">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>选择课程</label>
+                                        <select  class="form-control" name="keid">
+                                            <option>请选择</option>
+                                            {volist name="list" id="vo"}
+                                            <option value="{$vo.id}">{$vo.kname}</option>
+                                            {/volist}
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>选项</label>
+                                        <input class="form-control" value="" name="option">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>答案</label>
+                                        <input class="form-control" value="" name="answer">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>题目类型</label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="type" id="optionsRadiosInline1" value="1" checked="">单选
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="type" id="optionsRadiosInline2" value="2">多选
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="type" id="optionsRadiosInline3" value="3">判断
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="type" id="optionsRadiosInline4" value="4">填空
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>题目种类</label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="style" id="optionsRadiosInline5" value="1" checked="">仅供练习
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="style" id="optionsRadiosInline6" value="2">仅供考试
+                                        </label>
+                                    </div>
+                                    <button type="submit" class="btn btn-default">新增</button>
+                                    <button type="reset" class="btn btn-default">重置</button>
+                                </form>
+                            </div>
+                            <!-- /.col-lg-6 (nested) -->
+                            <!-- /.col-lg-6 (nested) -->
+                        </div>
+                        <!-- /.row (nested) -->
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+    </div>
+    <!-- /. PAGE INNER  -->
+</div>
+{/block}

@@ -1,0 +1,84 @@
+<nav class="navbar-default navbar-side" role="navigation">
+
+    <div class="sidebar-collapse">
+        <ul class="nav" id="main-menu">
+
+            <li>
+                <a {if condition="$module == 'Index'"}class="active-menu"{/if} href="{:url('index/index/index')}"><i class="fa fa-dashboard"></i> 首页</a>
+            </li>
+            <li     {if condition="session('admin.type')==1"}
+                    style="display: none"
+                    {/if}
+            {if condition="$module == 'Xueyuan'||$module=='Zhuanye'||$module=='Kecheng'||$module=='Jiaoshi'||$module=='Banji'||$module=='Yonghu'"}class="active"{/if}
+            >
+                <a href="ui-elements.html"><i class="fa fa-desktop"></i> 教学管理<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a {if condition="$module == 'Xueyuan'"}class="active-menu"{/if} href="{:url('index/xueyuan/index')}">学院管理</a>
+                    </li>
+                    <li>
+                        <a {if condition="$module == 'Zhuanye'"}class="active-menu"{/if} href="{:url('index/zhuanye/index')}">专业管理</a>
+                    </li>
+                    <li>
+                        <a {if condition="$module == 'Kecheng'"}class="active-menu"{/if} href="{:url('index/kecheng/index')}">课程管理</a>
+                    </li>
+                    <li>
+                        <a {if condition="$module == 'Jiaoshi'"}class="active-menu"{/if} href="{:url('index/jiaoshi/index')}">教师管理</a>
+                    </li>
+                    <li>
+                        <a {if condition="$module == 'Banji'"}class="active-menu"{/if} href="{:url('index/banji/index')}">班级、学生管理</a>
+                    </li>
+                    <li
+                            {if condition="session('admin.type')==1||session('admin.type')==2"}
+                            style="display: none"
+                            {/if}
+                    >
+                        <a {if condition="$module == 'Yonghu'"}class="active-menu"{/if} href="{:url('index/yonghu/index')}">用户管理</a>
+                    </li>
+
+
+                </ul>
+            </li>
+
+            <li
+                    {if condition="$module == 'Question'||$module == 'Lianxi'||$module == 'Zuoye'||$module == 'Kaoshi'"}class="active"{/if}
+            >
+                <a href="#"><i class="fa fa-sitemap"></i> 考试管理<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a {if condition="$module == 'Question'"}class="active-menu"{/if} href="{:url('index/question/index')}">题库管理</a>
+                    </li>
+                    <li>
+                        <a {if condition="$module == 'Lianxi'"}class="active-menu"{/if} href="{:url('index/lianxi/index')}">日常练习</a>
+                    </li>
+                    <li>
+                        <a {if condition="$module == 'Zuoye'"}class="active-menu"{/if} href="{:url('index/zuoye/index')}">作业</a>
+                    </li>
+                    <li>
+                        <a {if condition="$module == 'Kaoshi'"}class="active-menu"{/if} href="{:url('index/kaoshi/index')}">在线考试</a>
+
+                    </li>
+                </ul>
+            </li>
+            <li
+                    {if condition="$module == 'Biao'||$module == 'Tu'||$module == 'Tong'"}class="active"{/if}
+            >
+                <a href="chart.html"><i class="fa fa-bar-chart-o"></i> 成绩统计<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a {if condition="$module == 'Biao'"}class="active-menu"{/if} href="{:url('index/biao/index')}">表格统计成绩</a>
+                    </li>
+                    <li>
+                        <a {if condition="$module == 'Tu'"}class="active-menu"{/if} href="{:url('index/tu/index')}">课程/班级平均分、最高分统计</a>
+                    </li>
+                    <li>
+                        <a {if condition="$module == 'Tong'"}class="active-menu"{/if} href="{:url('index/tong/index')}">学生/课程统计表</a>
+                    </li>
+
+                </ul>
+            </li>
+        </ul>
+
+    </div>
+
+</nav>

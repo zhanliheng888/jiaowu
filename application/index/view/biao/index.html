@@ -1,0 +1,116 @@
+{extend name="public/base"}
+{block name="main"}
+<div id="page-wrapper" >
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">
+                    成绩统计
+                </h1>
+            </div>
+        </div>
+        <!-- /. ROW  -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Advanced Tables -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        表格统计
+                    </div>
+                    <center>
+                    <form action="#" id="searchForm">
+                        <div class="form-group input-group col-md-3">
+                            <input type="text" class="form-control" name="zhuan" placeholder="支持按专业查询">
+                            <span class="input-group-btn" height="90px;">
+                                                <button class="btn btn-default" id="doSearch" type="submit"><i class="fa fa-search"></i>
+                                                </button>
+                                            </span>
+                        </div>
+                    </form>
+                        <form action="#" id="searchForm">
+                            <div class="form-group input-group col-md-3">
+                                <input type="text" class="form-control" name="ke" placeholder="支持按课程查询">
+                                <span class="input-group-btn" height="90px;">
+                                                <button class="btn btn-default" id="doSearch" type="submit"><i class="fa fa-search"></i>
+                                                </button>
+                                            </span>
+                            </div>
+                        </form>
+                        <form action="#" id="searchForm">
+                            <div class="form-group input-group col-md-3">
+                                <input type="text" class="form-control" name="jiao" placeholder="支持按教师查询">
+                                <span class="input-group-btn" height="90px;">
+                                                <button class="btn btn-default" id="doSearch" type="submit"><i class="fa fa-search"></i>
+                                                </button>
+                                            </span>
+                            </div>
+                        </form>
+                        <form action="#" id="searchForm">
+                            <div class="form-group input-group col-md-3">
+                                <input type="text" class="form-control" name="xue" placeholder="支持按学生查询">
+                                <span class="input-group-btn" height="90px;">
+                                                <button class="btn btn-default" id="doSearch" type="submit"><i class="fa fa-search"></i>
+                                                </button>
+                                            </span>
+                            </div>
+                        </form>
+                    </center>
+                        <div class="panel-body">
+
+                                <select id="status">
+                                         <option value="1" {if condition="$li=='s.xuehao'"}selected="selected"{/if}>学号</option>
+                                         <option value="2" {if condition="$li=='c.chengji'"}selected="selected"{/if}>成绩</option>
+                                </select>
+
+                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                <tr >
+                                    <th>学号</th>
+                                    <th>学生姓名</th>
+                                    <th>专业名称</th>
+                                    <th>课程名称</th>
+                                    <th>教师姓名</th>
+                                    <th>成绩</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {volist name="arr" id="vo" key="k"}
+                                <tr class="odd gradeX"
+                                    {if condition="$vo.chengji >= 75&&$vo.chengji<=100"}
+                                    style="background-color: lightgreen; {if condition='$list.0.id== $vo.id||$list.1.id== $vo.id||$list.2.id== $vo.id'}color: red; {/if} "
+                                    {elseif condition="$vo.chengji >=60&&$vo.chengji < 75"}
+                                    style="background-color: #c85e0b; {if condition='$list.0.id== $vo.id||$list.1.id== $vo.id||$list.2.id== $vo.id'}color: red; {/if} "
+                                    {elseif condition="$vo.chengji < 60"}
+                                    style="background-color: #ed6b75; {if condition='$list.0.id== $vo.id||$list.1.id== $vo.id||$list.2.id== $vo.id'}color: red; {/if} "
+                                    {/if}
+                                >
+                                    <td>{$vo.xuehao}</td>
+                                    <td>{$vo.sname}</td>
+                                    <td>{$vo.yename}</td>
+                                    <td>{$vo.kname}</td>
+                                    <td>{$vo.jname}</td>
+                                    <td>{$vo.chengji}</td>
+                                </tr>
+                                {/volist}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!--End Advanced Tables -->
+            </div>
+        </div>
+
+
+    </div>
+
+<script src="__STATIC__/assets/js/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+    $("#status").change(function(){
+        var query = $(this).val();
+        location.href = location.pathname+"?li="+query
+    });
+</script>
+{/block}

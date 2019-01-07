@@ -1,0 +1,41 @@
+{extend name="public/base"}
+{block name="main"}
+<div id="page-wrapper" >
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">
+                    题目详情页面<small>题目详细信息页面</small>
+                </h1>
+            </div>
+        </div>
+        <!-- /. ROW  -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="jumbotron">
+                    <h2>{$list.id}</h2>
+                    <p>
+                        {$list.question}&nbsp;&nbsp;({$list.timu.kname})
+                        &nbsp;&nbsp;
+                        {if condition="$list.type==1"}
+                        单选
+                        {elseif condition="$list.type==2"}
+                        多选
+                        {elseif condition="$list.type==3"}
+                        判断
+                        {elseif condition="$list.type==3"}
+                        填空
+                        {/if}
+                        &nbsp;&nbsp;
+                        答案：{$list.answer}
+                        <br>
+                        {$list.option}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- /. ROW  -->
+    </div>
+    <!-- /. PAGE INNER  -->
+</div>
+{/block}

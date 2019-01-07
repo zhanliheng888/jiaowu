@@ -1,0 +1,95 @@
+{extend name="public/base"}
+{block name="main"}
+<div id="page-wrapper" >
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">
+                    考试管理-作业
+                </h1>
+            </div>
+        </div>
+        <!-- /. ROW  -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Advanced Tables -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        作业
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <div class="col-md-7"></div>
+
+                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>学生姓名</th>
+                                    <th>班级名称</th>
+                                    <th>所属专业</th>
+                                    <th>作业状态</th>
+                                    <th>完成时间</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {if condition="session('admin.type')==1"}
+                                <tr class="odd gradeX">
+                                    <td>1</td>
+                                    <td>{$arr.sname}</td>
+                                    <td>{$arr.bname}</td>
+                                    <td>{$arr.yename}</td>
+                                    <td>
+                                        {if condition="$list.have==1"}
+                                        未完成
+                                        {elseif condition="$list.have==2"}
+                                        已完成
+                                        {/if}
+                                        </td>
+                                    <td>请在{$list.guitime}之前完成</td>
+                                    <td>
+                                        <a
+                                                {if condition="$list.have==2"}
+                                                style="display: none;"
+                                                {/if}
+                                                href="{:url('index/zuoye/detail',['uid'=>$list.uid])}" class="btn btn-success btn-sm">作业</a>
+                                    </td>
+                                </tr>
+                                {else}
+                                {volist name="arr" id="vo" key="k"}
+                                <tr class="odd gradeX">
+                                    <td>{$k}</td>
+                                    <td>{$vo.sname}</td>
+                                    <td>{$vo.bname}</td>
+                                    <td>{$vo.yename}</td>
+                                    <td>
+                                        {if condition="$list[$k-1]['have']==1"}
+                                        未完成
+                                        {elseif condition="$list[$k-1]['have']==2"}
+                                        已完成
+                                        {/if}
+                                    </td>
+                                    <td>
+                                        请在{$list[$k-1]['guitime']}之前完成
+                                        </td>
+                                    <td>
+                                        <a href="{:url('index/zuoye/add',['id'=>$vo.id])}" class="btn btn-success">布置作业</a>
+                                    </td>
+                                </tr>
+                                {/volist}
+                                {/if}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!--End Advanced Tables -->
+            </div>
+        </div>
+
+    </div>
+</div>
+{/block}

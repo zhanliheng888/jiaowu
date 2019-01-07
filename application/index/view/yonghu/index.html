@@ -1,0 +1,71 @@
+{extend name="public/base"}
+{block name="main"}
+<div id="page-wrapper" >
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">
+                    用户管理
+                </h1>
+            </div>
+        </div>
+        <!-- /. ROW  -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Advanced Tables -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        用户列表
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <a href="{:url('index/yonghu/add')}" class="btn btn-success col-md-1">新增用户</a>
+                            <div class="col-md-7"></div>
+
+                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>用户名</th>
+                                    <th>密码</th>
+                                    <th>角色</th>
+                                    <th>最近登录时间</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {volist name="arr" id="vo"}
+                                <tr class="odd gradeX">
+                                    <td>{$vo.id}</td>
+                                    <td>{$vo.uersname}</td>
+                                    <td>{$vo.password|md5}</td>
+                                    <td>
+                                        {if condition="$vo.type==1"}
+                                            学生
+                                        {elseif condition="$vo.type==2"}
+                                            教师
+                                        {elseif condition="$vo.type==3"}
+                                            管理员
+                                        {/if}
+                                    </td>
+                                    <td>{$vo.time.logintime}</td>
+                                    <td>
+                                        <a href="{:url('index/yonghu/del',['id'=>$vo.id])}" onclick="return confirm('是否确认删除?')" class="btn btn-danger btn-sm">删除</a>
+                                    </td>
+                                </tr>
+                                {/volist}
+                                </tbody>
+                            </table>
+                        </div>
+                        <center>{$arr->render()}</center>
+                    </div>
+                </div>
+
+                <!--End Advanced Tables -->
+            </div>
+        </div>
+
+    </div>
+</div>
+{/block}
